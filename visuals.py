@@ -30,10 +30,7 @@ class MyGame(arcade.Window):
         arcade.set_background_color(arcade.color.AMAZON)
 
     def setup(self):
-        # Create the sprite lists
-        self.player1_list = arcade.SpriteList()
-        self.player2_list = arcade.SpriteList()
-        self.game_list = arcade.SpriteList()
+        # Create the sprite lists, one deck for each player
         self.p1_card_list = arcade.SpriteList()
         self.p2_card_list = arcade.SpriteList()
 
@@ -51,57 +48,8 @@ class MyGame(arcade.Window):
                 self.p1_card_list.append(card)
                 self.p2_card_list.append(card)
 
-        # Set up the player1 display
-
-
-
-        # p1_first_likely_card1 = arcade.Sprite("card-BMPS/c01.bmp")
-        # p1_first_likely_card1.center_x = 50
-        # p1_first_likely_card1.center_y = 700
-        # self.player1_list.append(p1_first_likely_card1)
-        # p1_first_likely_card2 = arcade.Sprite("card-BMPS/d01.bmp")
-        # p1_first_likely_card2.center_x = 150
-        # p1_first_likely_card2.center_y = 700
-        # self.player1_list.append(p1_first_likely_card2)
-
-
-        # Set up player 2 display
-        # p2_first_likely_card1 = arcade.Sprite("card-BMPS/h01.bmp")
-        # p2_first_likely_card1.center_x = 1150
-        # p2_first_likely_card1.center_y = 700
-        # self.player1_list.append(p2_first_likely_card1)
-        # p2_first_likely_card2 = arcade.Sprite("card-BMPS/s01.bmp")
-        # p2_first_likely_card2.center_x = 1050
-        # p2_first_likely_card2.center_y = 700
-        # self.player1_list.append(p2_first_likely_card2)
-
-
-
-
-
-
         pass
 
-
-        # # Character image from kenney.nl
-        # self.player_sprite = arcade.Sprite("henners.png", 0.2)
-        # self.player_sprite.center_x = 50  # Starting position
-        # self.player_sprite.center_y = 50
-        # self.player_list.append(self.player_sprite)
-        #
-        # # Create the coins
-        # for i in range(COIN_COUNT):
-        #     # Create the coin instance
-        #     # Coin image from kenney.nl
-        #     coin = arcade.Sprite("coin.png", 0.05)
-        #
-        #     # Position the coin
-        #     coin.center_x = random.randrange(SCREEN_WIDTH)
-        #     coin.center_y = random.randrange(SCREEN_HEIGHT)
-        #
-        #     # Add the coin to the lists
-        #     self.coin_list.append(coin)
-        # pass
 
 
     def on_draw(self):
@@ -119,14 +67,15 @@ class MyGame(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
+        # remove old cards
         self.p1_card_list.move(500, 1000)
         self.p2_card_list.move(500, 1000)
 
-
+        # Read desired card numbers 0-51 from text file
         f=open("inputcards.txt","r")
         card_string=f.readline()
         input_list = list(map(int, card_string.split(',')))
-
+        # display chosen cards
         p1_card1 = self.p1_card_list[input_list[0]]
         p1_card1.set_position(50,700)
 
@@ -141,9 +90,6 @@ class MyGame(arcade.Window):
 
 
 
-    # def on_key_release(self, symbol, modifiers):
-    #     """Called on key release"""
-    #     self.p1_card_list.move(500,1000)\
 
 
 
